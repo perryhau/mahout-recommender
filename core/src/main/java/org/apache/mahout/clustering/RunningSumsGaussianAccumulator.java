@@ -21,7 +21,7 @@ import org.apache.mahout.math.function.Functions;
 import org.apache.mahout.math.function.SquareRootFunction;
 
 /**
- * An online Gaussian accumulator that uses a running power sums approach as reported 
+ * An recommender Gaussian accumulator that uses a running power sums approach as reported
  * on http://en.wikipedia.org/wiki/Standard_deviation
  * Suffers from overflow, underflow and roundoff error but has minimal observe-time overhead
  */
