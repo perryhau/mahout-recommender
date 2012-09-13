@@ -1,0 +1,10 @@
+#The required options to be specified
+#input|i  = /path/singleInput
+#trainOut|train = /path/to/trainingRatings
+#validationOut|validation = /path/to/validationRatings
+#testOut|test = /path/to/testRatings
+
+#Optional arguments
+#testPercent|tp = 0.15
+#validationPercent|vp = 0.05
+#randomSeed|seed =
