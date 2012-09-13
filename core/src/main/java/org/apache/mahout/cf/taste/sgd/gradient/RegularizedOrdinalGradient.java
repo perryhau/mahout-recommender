@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@inheritDoc}
  * Gradient implementation for Ordinal Recommendation
  */
 public class RegularizedOrdinalGradient extends StochasticGradient{

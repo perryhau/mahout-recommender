@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@inheritDoc}
  * Gradient implementation that works for numerical, binary, and poisson recommendation
  */
 public class RegularizedDefaultGradient extends StochasticGradient {

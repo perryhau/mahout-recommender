@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 /**
  * Gradient implementation for Multinomial Recommendation
  */
-
 public class RegularizedSoftmaxGradient extends StochasticGradient {
   private Hypothesis hypothesis;
   private double learningRate;
