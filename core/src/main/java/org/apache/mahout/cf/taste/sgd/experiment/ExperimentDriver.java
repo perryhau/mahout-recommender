@@ -66,7 +66,6 @@ public class ExperimentDriver extends AbstractJob{
   public static String FACTOR_SIZE = "factorSize";
   public static String LEARNING_RATE = "learningRate";
   public static String RATING_MAPPER = "ratingMapper";
-  public static String RATING_PREDICTION_STRATEGY = "ratingPredictionStrategy";
   public static String EVAL = "eval";
   public static String USER_SIDE_INFO_FILE = "userSideInfoFile";
   public static String ITEM_SIDE_INFO_FILE = "itemSideInfoFile";
@@ -90,11 +89,6 @@ public class ExperimentDriver extends AbstractJob{
     addOption(FACTOR_SIZE, "fs", "Number of factors, default 150", "150");
     addOption(LEARNING_RATE, "lr", "Learning rate, default 0.005", "0.005");
     addOption(RATING_MAPPER, "mapper", "Rating mapper class name, default org.apache.mahout.cf.taste.sgd.common.DefaultRatingMapper", "org.apache.mahout.cf.taste.sgd.common.DefaultRatingMapper");
-    addOption(RATING_PREDICTION_STRATEGY, "strategy", "Rating prediction strategy. Suggestions:" +
-        "i)If this is a numerical recommender leave this default. " +
-        "ii)If this is an ordinal recommender with a numerical evaluation (such as RMSE), set this to MostProbableClassPredictionStrategy. " +
-        "iii)If this is a recommender with a categorical evaluation (such as precision), set this to MostProbableClassPredictionStrategy. " +
-        "If this is not set, the default is for numerical recommender ScoreOnTargetClassStrategy, for categorical recommenders MostProbableClassPredictionStrategy", false);
     addOption(EVAL, "e", "Evaluation class name", true);
     addOption(SEE_CONVERGENCE, "con", "If true, prints current score after each iteration", true);
     addOption(USER_SIDE_INFO_FILE, "userSide", "SequenceFile of <LongWritable, VectorWritable> pairs for user side info. Set this if this is a user side info aware recommender", false);
