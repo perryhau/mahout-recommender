@@ -1,0 +1,31 @@
+#Required options to be specified
+#trainingFile|train = /path/to/train
+#testFile|test = /path/to/test
+#seeConvergence|con = true to see current score after every iteration to check convergence. Useful for validating learning rate
+#eval|e = full class name of evaluator
+
+#Required only if the recommender is ordinal
+#cutsLambda|cl = Regularization rate for ordinal cuts
+
+#Required if user side info aware recommender is expected
+#userSideLambda|ul = Regularization rate for user side info parameters
+#userSideInfoFile|userSide = SequenceFile of <LongWritable, VectorWritable> pairs for user side info
+
+#Required if item side info aware recommender is expected
+#itemSideLamda|il = Regularization rate for item side info parameters
+#itemSideInfoFile|itemSide = SequenceFile of <LongWritable, VectorWritable> pairs for item side info
+
+#Required if dynamic side info aware recommender is expected
+#dynamicSideLambda|dl = Regularization rate for dynamic side info parameters
+
+#Options with default values
+#ordinal|o = true for ordinal recommender (default false)
+#sideInfo|s = true for side info aware recommender (default false)
+#iteration|i = number of iterations (default 50)
+#classes|c = Number of categories, set 2 if this is binary, or # of categories if this is multinomial or ordinal (default 1)
+#biasLambda|bl = Regularization rate for user and item intercepts (default 0.005)
+#factorsLambda|fl = Regularization rate for user and item latent factors (default 0.025)
+#learningRate|lr = Learning rate (default 0.005)
+#factorSize|fs = Number of factors (default 150)
+#ratingMapper|mapper = Rating mapper class (default org.apache.mahout.cf.taste.sgd.common.DefaultRatingMapper)
+#separator|sep = Separating string  of userid-itemid-rating triplets (default ,)

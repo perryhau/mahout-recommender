@@ -64,7 +64,10 @@ org.apache.mahout.cf.taste.hadoop.als.RecommenderJob = recommendfactorized : Com
 
 #Online MF Based Recommenders
 org.apache.mahout.cf.taste.sgd.common.TrainTestValidationSplitter = splitRecommenderData : split text file of ratings into training, validation and test data. Each line is considered as a rating line
-
+org.apache.mahout.cf.taste.sgd.common.SideInfoByLineToSequenceFile = side2sequence : simply convert text file to SequenceFile as a prior to seq2sparse or sideSeq2vector
+org.apache.mahout.cf.taste.sgd.common.SideInfoSequenceToVector = sideSeq2vector : custom vectorization on side info sequence files
+org.apache.mahout.cf.taste.sgd.common.TextIdToLongWritableSequence = text2longid : simply cast Text keys to LongWritables
+org.apache.mahout.cf.taste.sgd.experiment.ExperimentDriver = recommendOnlineFactorized : Run factorization based online recommender for testing or validation purposes
 
 prepare20newsgroups = deprecated : Try the new vector backed naivebayes classifier see examples/bin/classify-20newsgroups.sh
 trainclassifier = deprecated : Try the new vector backed naivebayes classifier see examples/bin/classify-20newsgroups.sh 
