@@ -34,7 +34,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Does cross-fold validation of log-likelihood and AUC on several recommender logistic regression
+ * Does cross-fold validation of log-likelihood and AUC on several online logistic regression
  * models. Each record is passed to all but one of the models for training and to the remaining
  * model for evaluation.  In order to maintain proper segregation between the different folds across
  * training data iterations, data should either be passed to this learner in the same order each

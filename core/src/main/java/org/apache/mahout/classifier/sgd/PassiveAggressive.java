@@ -156,7 +156,7 @@ public class PassiveAggressive extends AbstractVectorClassifier implements Onlin
 
   @Override
   public void close() {
-      // This is an recommender classifier, nothing to do.
+      // This is an online classifier, nothing to do.
   }
 
   @Override

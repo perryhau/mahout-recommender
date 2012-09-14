@@ -22,7 +22,7 @@ import org.apache.mahout.math.Vector;
 import java.io.Closeable;
 
 /**
- * The simplest interface for recommender learning algorithms.
+ * The simplest interface for online learning algorithms.
  */
 public interface OnlineLearner extends Closeable {
   /**
@@ -88,7 +88,7 @@ public interface OnlineLearner extends Closeable {
   /**
    * Prepares the classifier for classification and deallocates any temporary data structures.
    *
-   * An recommender classifier should be able to accept more training after being closed, but
+   * An online classifier should be able to accept more training after being closed, but
    * closing the classifier may make classification more efficient.
    */
   @Override

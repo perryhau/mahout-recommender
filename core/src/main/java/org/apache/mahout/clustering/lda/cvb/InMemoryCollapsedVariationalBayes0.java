@@ -315,7 +315,7 @@ public class InMemoryCollapsedVariationalBayes0 extends AbstractJob {
     Option modelCorpusFractionOption = obuilder.withLongName("modelCorpusFraction")
         .withRequired(false).withArgument(abuilder.withName("modelCorpusFraction").withMinimum(1)
         .withMaximum(1).withDefault(0.0).create()).withShortName("mcf")
-        .withDescription("For recommender updates, initial value of |model|/|corpus|").create();
+        .withDescription("For online updates, initial value of |model|/|corpus|").create();
 
     Option burnInOpt = obuilder.withLongName("burnInIterations").withRequired(false).withArgument(abuilder
         .withName("burnInIterations").withMinimum(1).withMaximum(1).withDefault(5).create())
