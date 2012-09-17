@@ -24,6 +24,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.commandline.DefaultOptionCreator;
 
@@ -35,6 +36,9 @@ import java.io.File;
  */
 public class SideInfoByLineToSequenceFile extends AbstractJob{
   public static String SEPARATOR = "separator";
+
+  public SideInfoByLineToSequenceFile() {
+  }
 
   @Override
   public int run(String[] strings) throws Exception {
@@ -51,10 +55,14 @@ public class SideInfoByLineToSequenceFile extends AbstractJob{
     SequenceFile.Writer seqWriter = new SequenceFile.Writer(outputPath.getFileSystem(conf), conf, outputPath, Text.class, Text.class);
     String separator = getOption(SEPARATOR);
     for(String line: Files.readLines(inputFile, Charsets.UTF_8)){
-      String[] fields = line.split(separator);
-      seqWriter.append(new Text(fields[0]), new Text(fields[1]));
+      String id = line.substring(0, line.indexOf(separator));
+      seqWriter.append(new Text(id), new Text(line));
     }
     Closeables.closeQuietly(seqWriter);
     return 0;
+  }
+
+  public static void main(String[] args) throws Exception {
+    ToolRunner.run(new Configuration(), new SideInfoByLineToSequenceFile(), args);
   }
 }

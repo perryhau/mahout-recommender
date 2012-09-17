@@ -24,6 +24,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.Pair;
 import org.apache.mahout.common.commandline.DefaultOptionCreator;
@@ -34,6 +35,10 @@ import org.apache.mahout.math.VectorWritable;
  * Because seq2sparse outs <Text, VectorWritable> pairs, this simple job converts Text keys to LongWritables.
  */
 public class TextIdToLongWritableSequence extends AbstractJob {
+
+  public TextIdToLongWritableSequence() {
+  }
+
   @Override
   public int run(String[] strings) throws Exception {
     addInputOption();
@@ -61,5 +66,9 @@ public class TextIdToLongWritableSequence extends AbstractJob {
       Closeables.closeQuietly(writer);
     }
     return 0;
+  }
+
+  public static void main(String[] args) throws Exception {
+    ToolRunner.run(new Configuration(), new TextIdToLongWritableSequence(), args);
   }
 }

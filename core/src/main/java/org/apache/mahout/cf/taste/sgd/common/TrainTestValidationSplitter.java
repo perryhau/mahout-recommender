@@ -19,6 +19,9 @@ package org.apache.mahout.cf.taste.sgd.common;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.IOUtils;
+import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.RandomUtils;
 import org.apache.mahout.common.commandline.DefaultOptionCreator;
@@ -40,6 +43,9 @@ public class TrainTestValidationSplitter extends AbstractJob {
   public static String TEST_OUT = "testOut";
   public static String VALIDATION_OUT = "validationOut";
 
+  public TrainTestValidationSplitter() {
+
+  }
   @Override
   public int run(String[] args) throws Exception {
     addOption(INPUT, "i", "Input path", true);
@@ -72,6 +78,17 @@ public class TrainTestValidationSplitter extends AbstractJob {
         trainOut.println(line);
       }
     }
+    trainOut.flush();
+    testOut.flush();
+    validationOut.flush();
+
+    IOUtils.closeStream(trainOut);
+    IOUtils.closeStream(testOut);
+    IOUtils.closeStream(validationOut);
     return 0;
+  }
+
+  public static void main(String[] args) throws Exception {
+    ToolRunner.run(new Configuration(), new TrainTestValidationSplitter(), args);
   }
 }

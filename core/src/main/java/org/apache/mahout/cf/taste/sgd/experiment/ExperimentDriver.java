@@ -20,9 +20,11 @@ package org.apache.mahout.cf.taste.sgd.experiment;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.cf.taste.impl.model.FactorizationAwareDataModel;
 import org.apache.mahout.cf.taste.impl.model.GenericIncrementalDataModel;
 import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.sgd.common.MostProbableClassPredictionStrategy;
 import org.apache.mahout.cf.taste.sgd.common.RatingMapper;
 import org.apache.mahout.cf.taste.sgd.common.RatingPredictionStrategy;
@@ -73,6 +75,9 @@ public class ExperimentDriver extends AbstractJob{
   public static String TEST_FILE = "testFile";
   public static String SEPARATOR = "separator";
   public static String SEE_CONVERGENCE = "seeConvergence";
+
+  public ExperimentDriver() {
+  }
 
   @Override
   public int run(String[] strings) throws Exception {
@@ -125,7 +130,6 @@ public class ExperimentDriver extends AbstractJob{
     DataModel dataModel;
     FeatureVectorModel featureVectorModel = new InMemoryFeatureVectorModel(factorSize, numClasses, ordinal);
     Eval eval;
-    RatingPredictionStrategy ratingPredictionStrategy;
     String userSideInfoFile, itemSideInfoFile;
 
     if (ordinal) {
@@ -163,7 +167,7 @@ public class ExperimentDriver extends AbstractJob{
     dataModel = new FactorizationAwareDataModel(new GenericIncrementalDataModel(), learner);
     recommender = numClasses==1 ? new OnlineFactorizationRecommender(learner, dataModel, new ScoreOnTargetClassStrategy()) : new OnlineFactorizationRecommender(learner, dataModel, new MostProbableClassPredictionStrategy());
     Class<? extends Eval> evalClass = Class.forName(getOption(EVAL)).asSubclass(Eval.class);
-    eval = evalClass.newInstance();
+    eval = evalClass.getConstructor(new Class[]{Recommender.class, int.class}).newInstance(recommender, numClasses);
     new GenericExperiment(new RecommenderEvalSetup(learner), eval, recommender, learner, numIterations, trainingFilePath, testFilePath, separator, ratingMapper, seeConvergence).run();
     return 0;
   }
@@ -189,4 +193,7 @@ public class ExperimentDriver extends AbstractJob{
     }
   }
 
+  public static void main(String[] args) throws Exception {
+    ToolRunner.run(new Configuration(), new ExperimentDriver(), args);
+  }
 }
