@@ -25,6 +25,13 @@ public class MAEEval extends NumericalRatingBasedEval {
     super(recommender);
   }
 
+  /**
+   * This is for convenience in {@link org.apache.mahout.cf.taste.sgd.experiment.ExperimentDriver}
+   */
+  public MAEEval(Recommender recommender, int ignored) {
+    this(recommender);
+  }
+
   @Override
   protected float[] aggregateFunc(float v) {
     return new float[]{v};
